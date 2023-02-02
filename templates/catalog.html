@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalog</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <!-- Added javascript library for font awesome icon -->
+    <script src="https://kit.fontawesome.com/8c213d4be5.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="outer-container">
+        <!-- Create the header bar section -->
+        <div class="header-bar">
+            <nav class="nav">
+                <div class="logo">
+                    <img src="../static/logo.png" class="center" width="80" height="80">
+                    <!-- <h1>Twitter Cataloging System</h1> -->
+                </div>
+
+                <div class="mainHeader">
+                    <h1>Twitter Cataloging System</h1>
+                </div>
+
+                <div class="nav-items">
+                    <ul>
+                        <li><a href="{{ url_for('register')}}">Register</a></li>
+                        <li><a href="{{ url_for('index')}}">Log in</a></li>
+                        <li><a href="{{ url_for('catalog')}}">Catalog</a></li>
+                        <li><a href="{{ url_for('dashboard')}}">Dashboard</a></li>
+                        <li><a href="{{ url_for('upload')}}">Upload</a></li>
+                        <li><a href="{{ url_for('logout')}}">Log Out</a></li>
+
+                    </ul>
+
+                </div>
+
+            </nav>
+        </div>       <!--End of Header-Bar Section -->
+        <div class="TopSidebar">
+            <p></p>
+            <p></p>
+        </div>
+        <form id='form' method="POST" action='/catalog'>
+            <div class="inner-container">
+
+                <!-- Create a Side-bar Section -->
+                <div class="sidebar">
+                    <!-- user logo inserted from font awesome -->
+                    <i class="fas fa-user-tag"></i>
+                    {% if ready %}
+                    <p>My id is: {{ session['email'] }}
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    <p>My role is a cataloger</p>
+
+                </div>  
+
+                    <div id="container1" class="container">
+                        
+                            <label for="" id="whenLabel" class="when_label">When</label>
+                            <input type="Date" name='when' id ='whenInput' class="when_input" placeholder="dd/mm/yyyy" size="14">
+                            
+                            
+
+
+                            <label for="" id="whoLabel" class="who_label">Who</label>
+                            <textarea name="who" id='whoInput' class="who_input" rows="1"></textarea>
+
+                            <label for="" id ="commentLabel" class="comment_label">Comment</label>
+                            <textarea name="comment" id="commentInput" class="comment_input"></textarea>
+
+                            <label for="" id="aboutLabel" class="about_label">About</label>
+                            <textarea name="about" id="aboutInput" class="about_input" rows="1"></textarea>
+
+                            <label for="" id="mediaLabel" class="media_label">Media</label>
+                            <select name="media" id ="mediaInput" class="media_input">
+                                <option value="" disabled selected>*Please select*</option>
+                                <option value="Text">Text</option>
+                                <option value="Photo">Photo</option>
+                                <option value="Video">Video</option>
+                            </select>
+
+                            <label for="" id="whatLabel"class="what_label">What (hashtag)</label>
+                            <textarea name="what" id="whatInput" class="what_input" rows="1"></textarea>
+
+                            <label for="" id="whomLabel"class="whom_label">Whom (user_mentions)</label>
+                            <textarea name="whom" id="whomInput" class="whom_input"rows="1"></textarea>
+
+                            <label for="" id="refLabel"class="ref_label">Reference ID</label>
+                            <textarea name="ref" id="refInput" class="ref_input" rows="1"></textarea>
+
+                            
+                            <button class="r1" id="submitBtn" origC="rgb(255,255,255)">SUBMIT</button>
+                    
+                    
+                    </div>  <!--End of my container-->
+                    {% else %}
+                    <p>Welcome! Please login to access catalog  <a href="{{ url_for('login') }}">here.</a>
+                    {% endif %}  
+                <div class="RightSidebar">
+                    <p></p>
+                    <p></p>
+                </div>
+            </div>  <!--End of my Inner Container-->
+        </form>
+        <div class="BtmSidebar">
+            <p></p>
+            <p></p>
+        </div>
+
+    </div>   <!--End of my Outer Container-->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="../static/catalog.js"></script>
+
+</body>
+</html>

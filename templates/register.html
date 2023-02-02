@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <!-- Added javascript library for font awesome icon -->
+    <script src="https://kit.fontawesome.com/8c213d4be5.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="outer-container">
+        <!-- Create the header bar section -->
+        <div class="header-bar">
+            <nav class="nav">
+                <div class="logo">
+                    <img src="../static/logo.png" class="center" width="80" height="80">
+                    <!-- <h1>Twitter Cataloging System</h1> -->
+                </div>
+
+                <div class="mainHeader">
+                    <h1>Twitter Cataloging System</h1>
+                </div>
+
+                <div class="nav-items">
+                    <ul>
+                        <li><a href="{{ url_for('register')}}">Register</a></li>
+                        <li><a href="{{ url_for('index')}}">Log in</a></li>
+                        <li><a href="{{ url_for('catalog')}}">Catalog</a></li>
+                        <li><a href="{{ url_for('dashboard')}}">Dashboard</a></li>
+                        <li><a href="{{ url_for('upload')}}">Upload</a></li>
+                        <li><a href="{{ url_for('logout')}}">Log Out</a></li>
+
+                    </ul>
+
+                </div>
+
+            </nav>
+        </div>       <!--End of Header-Bar Section -->
+        <div class="RegTopSidebar">
+            <p></p>
+            <p></p>
+        </div>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class='notification is-danger'>
+            <!-- display warning message if user login name or password is wrong -->
+            {{ messages[0] }}
+        </div>
+        {% endif %}
+        {% endwith %}
+        <form method="POST" action='/register'>
+            <div class="reg_inner-container">
+                <div class="reg_container"> 
+                    <a class="registerBtn" href="/register">Register</a>
+                    <a class="loginBtn" href="/index">Login</a>
+
+
+                    <label for="" class="email_label">Enter your email:</label>
+                    <input type="email" name='email' class="email_input" rows="1">
+
+                    <label for="" class="pass_label">Enter your password:</label>
+                    <input type="password" name ='password' class="pass_input" rows="1">
+
+                    <label for="" class="NRIC_label">Enter your NRIC:</label>
+                    <input type="text" name='NRIC' class="NRIC_input" rows="1">
+
+                    <button class="reg1" id="register_Btn2" origC="rgb(255,255,255)">REGISTER</button>
+                
+
+                </div>  <!--End of my container-->
+                <div class="RegRightSidebar">
+                    <p></p>
+                    <p></p>
+                </div>
+            </div>  <!--End of my Inner Container-->
+        </form>
+        <div class="BtmSidebar">
+            <p></p>
+            <p></p>
+        </div>
+
+    </div>   <!--End of my Outer Container-->
+</body>
+</html>
+

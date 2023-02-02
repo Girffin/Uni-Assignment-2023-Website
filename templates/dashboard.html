@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <!-- Added javascript library for font awesome icon -->
+    <script src="https://kit.fontawesome.com/8c213d4be5.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="outer-container">
+        <!-- Create the header bar section -->
+        <div class="header-bar">
+            <nav class="nav">
+                <div class="logo">
+                    <img src="../static/logo.png" class="center" width="80" height="80">
+                    <!-- <h1>Twitter Cataloging System</h1> -->
+                </div>
+
+                <div class="mainHeader">
+                    <h1>Twitter Cataloging System</h1>
+                </div>
+
+                <div class="nav-items">
+                    <ul>
+                        <li><a href="{{ url_for('register')}}">Register</a></li>
+                        <li><a href="{{ url_for('index')}}">Log in</a></li>
+                        <li><a href="{{ url_for('catalog')}}">Catalog</a></li>
+                        <li><a href="{{ url_for('dashboard')}}">Dashboard</a></li>
+                        <li><a href="{{ url_for('upload')}}">Upload</a></li>
+                        <li><a href="{{ url_for('logout')}}">Log Out</a></li>
+                    </ul>
+
+                </div>
+
+            </nav>
+        </div>       <!--End of Header-Bar Section -->
+        <div class="RegTopSidebar">
+            <p></p>
+            <p></p>
+        </div>
+        <div class="dash_inner-container">
+            <!-- Create a Side-bar Section -->
+            <div class="sidebar">
+                <!-- user logo inserted from font awesome -->
+                <i class="fas fa-user-tag"></i>
+                {% if ready %}
+                <p>My id is: {{ session['email'] }}
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                <p>My role is a editor</p>
+            </div>  
+            <div class="dash_container"> 
+                <h1 class ="dashHeader">The Twitter Trending</h1>
+                <div>
+                    <canvas id="myChart" width="650" height="400"></canvas>
+                </div>
+        
+
+            </div>  <!--End of my container-->
+            {% else %}
+            <p>Welcome! Please login to access Dashboard  <a href="{{ url_for('login') }}">here.</a>
+            {% endif %}  
+            <!-- <div class="RegRightSidebar">
+                <p></p>
+                <p></p>
+            </div> -->
+        </div>  <!--End of my Inner Container-->
+        <div class="BtmSidebar">
+            <p></p>
+            <p></p>
+        </div>
+
+    </div>   <!--End of my Outer Container-->
+    <!-- Load d3.js just for csv reading purpose -->
+    <script src="https://d3js.org/d3.v4.js"></script>
+
+    <!-- Load Chart JS library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="../static/dashboard.js"></script>
+    <script>
+        const labels = [
+        '2013',
+        '2014',
+        '2015',
+        '2016',
+        '2017',
+        '2018',
+        '2019',
+        '2020',
+        '2021',
+      ];
+      const data = {
+        labels: labels,
+        datasets: [{
+          label: '# of Twitter Messages Per Year',
+          backgroundColor: 'rgb(0, 99, 132)',
+          borderColor: 'rgb(0, 99, 132)',
+          data: [],
+        }]
+      };
+      const config = {
+        type: 'bar',
+        data: data,
+        options: {}
+        };
+        const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+        </script>
+</body>
+</html>

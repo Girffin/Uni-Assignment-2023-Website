@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <!-- Added javascript library for font awesome icon -->
+    <script src="https://kit.fontawesome.com/8c213d4be5.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="outer-container">
+        <!-- Create the header bar section -->
+        <div class="header-bar">
+            <nav class="nav">
+                <div class="logo">
+                    <img src="../static/logo.png" class="center" width="80" height="80">
+                    <!-- <h1>Twitter Cataloging System</h1> -->
+                </div>
+
+                <div class="mainHeader">
+                    <h1>Twitter Cataloging System</h1>
+                </div>
+
+                <div class="nav-items">
+                    <ul>
+                        <li><a href="{{ url_for('register')}}">Register</a></li>
+                        <li><a href="{{ url_for('index')}}">Log in</a></li>
+                        <li><a href="{{ url_for('catalog')}}">Catalog</a></li>
+                        <li><a href="{{ url_for('dashboard')}}">Dashboard</a></li>
+                        <li><a href="{{ url_for('upload')}}">Upload</a></li>
+                        <li><a href="{{ url_for('logout')}}">Log Out</a></li>
+
+                    </ul>
+
+                </div>
+
+            </nav>
+        </div>       <!--End of Header-Bar Section -->
+        <div class="RegTopSidebar">
+            <p></p>
+            <p></p>
+        </div>
+        <form method="POST" action='/upload' enctype="multipart/form-data">
+            
+            <div class="Upload_inner-container">
+                <!-- Create a Side-bar Section -->
+                <div class="sidebar">
+                    <!-- user logo inserted from font awesome -->
+                    <i class="fas fa-user-tag"></i>
+                    {% if ready %}
+                    <p>My id is: {{ session['email'] }}
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    <p>My role is a system admin and web master</p>
+
+                </div>  
+
+
+                <!-- <div class ="UploadHeader">
+                    <h1>Upload Twitter Catalog Data</h1>
+
+
+                </div> -->
+
+                <div class="Up_container"> 
+                    <h1 class ="UploadHeader">Upload Twitter Catalog Data</h1>
+
+                    <label for="" class="Upload_label">Upload CSV file</label>
+                    <input type="file" name ="file" class="Upload_input" rows="1">
+
+                    <button class="upload1" id="upload_Btn2" origC="rgb(255,255,255)">UPLOAD</button>
+                
+
+                </div>  <!--End of my container-->
+                {% else %}
+                <p>Welcome! Please login to access Upload  <a href="{{ url_for('login') }}">here.</a>
+                {% endif %}
+            <!-- <div class="reg_inner-container">
+
+                <div class="RegRightSidebar">
+                    <p></p>
+                    <p></p>
+                </div> -->
+            </div>  <!--End of my Inner Container-->
+        </form>
+        <div class="BtmSidebar">
+            <p></p>
+            <p></p>
+        </div>
+
+    </div>   <!--End of my Outer Container-->
+</body>
+</html>
